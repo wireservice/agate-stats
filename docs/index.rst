@@ -27,6 +27,9 @@ API
 .. autoclass:: agatestats.table.TableStats
     :members:
 
+.. autoclass:: agatestats.computations.ZScores
+    :members:
+
 Authors
 =======
 
