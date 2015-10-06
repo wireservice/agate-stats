@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from computations import ZScores
+from agatestats.computations import ZScores
 
 def patch():
     """
