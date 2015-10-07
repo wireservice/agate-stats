@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-import sys
 
 install_requires = [
-    'agate>=0.10.0'
+    'agate>=0.11.0'
 ]
 
 setup(
@@ -32,7 +31,6 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Multimedia :: Graphics',
         'Topic :: Scientific/Engineering :: Information Analysis',
-        'Topic :: Scientific/Engineering :: Visualization',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=[
