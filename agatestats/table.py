@@ -3,25 +3,27 @@
 import agate
 
 class TableStats(object):
+    @agate.allow_tableset_proxy
     def stdev_outliers(self, column_name, deviations=3, reject=False):
         """
-        A wrapper around :meth:`where` that filters the dataset to
-        rows where the value of the column are more than some number
-        of standard deviations from the mean.
+        A wrapper around :meth:`Table.where <agate.table.Table.where>` that
+        filters the dataset to rows where the value of the column are more than
+        some number of standard deviations from the mean.
 
         This method makes no attempt to validate that the distribution
         of your data is normal.
 
         There are well-known cases in which this algorithm will
         fail to identify outliers. For a more robust measure see
-        :meth:`mad_outliers`.
+        :meth:`.TableStats.mad_outliers`.
 
         :param column_name: The name of the column to compute outliers on.
         :param deviations: The number of deviations from the mean a data point
             must be to qualify as an outlier.
-        :param reject: If :code:`True` then the new :class:`Table` will contain
-            everything *except* the outliers.
-        :returns: A new :class:`Table`.
+        :param reject: If :code:`True` then the new
+            :class:`Table <agate.table.Table>` will contain everything *except*
+            the outliers.
+        :returns: A new :class:`Table <agate.table.Table>`.
         """
         mean = self.columns[column_name].aggregate(agate.Mean())
         sd = self.columns[column_name].aggregate(agate.StDev())
@@ -36,11 +38,12 @@ class TableStats(object):
 
         return self.where(f)
 
+    @agate.allow_tableset_proxy
     def mad_outliers(self, column_name, deviations=3, reject=False):
         """
-        A wrapper around :meth:`where` that filters the dataset to
-        rows where the value of the column are more than some number of
-        `median absolute deviations <http://en.wikipedia.org/wiki/Median_absolute_deviation>`_
+        A wrapper around :meth:`Table.where <agate.table.Table.where>` that
+        filters the dataset to rows where the value of the column are more than
+        some number of `median absolute deviations <http://en.wikipedia.org/wiki/Median_absolute_deviation>`_
         from the median.
 
         This method makes no attempt to validate that the distribution
@@ -49,9 +52,10 @@ class TableStats(object):
         :param column_name: The name of the column to compute outliers on.
         :param deviations: The number of deviations from the median a data point
             must be to qualify as an outlier.
-        :param reject: If :code:`True` then the new :class:`Table` will contain
-            everything *except* the outliers.
-        :returns: A new :class:`Table`.
+        :param reject: If :code:`True` then the new
+            :class:`Table <agate.table.Table>` will contain everything *except*
+            the outliers.
+        :returns: A new :class:`Table <agate.table.Table>`.
         """
         median = self.columns[column_name].aggregate(agate.Median())
         mad = self.columns[column_name].aggregate(agate.MAD())
@@ -66,14 +70,20 @@ class TableStats(object):
 
         return self.where(f)
 
+    @agate.allow_tableset_proxy
     def pearson_correlation(self, column_one, column_two):
         """
         Calculates the `Pearson correlation coefficient <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
         for :code:`column_one` and :code:`column_two`.
 
-        Returns a number between -1 and 1 with 0 implying no correlation. A correlation close to 1 implies a high positive correlation i.e. as x increases so does y. A correlation close to -1 implies a high negative correlation i.e. as x increases, y decreases.
+        Returns a number between -1 and 1 with 0 implying no correlation. A
+        correlation close to 1 implies a high positive correlation i.e. as x
+        increases so does y. A correlation close to -1 implies a high negative
+        correlation i.e. as x increases, y decreases.
 
-        Note: this implementation is borrowed from the MIT licensed `latimes-calculate <https://github.com/datadesk/latimes-calculate/blob/master/calculate/pearson.py>`_. Thanks, LAT!
+        Note: this implementation is borrowed from the MIT licensed
+        `latimes-calculate <https://github.com/datadesk/latimes-calculate/blob/master/calculate/pearson.py>`_.
+        Thanks, LAT!
 
         :param column_one: The name of a column.
         :param column_two: The name of a column.
