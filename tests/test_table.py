@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 from decimal import Decimal
+import warnings
 
 try:
     import unittest2 as unittest
@@ -107,8 +108,14 @@ class TestTable(unittest.TestCase):
 
         table = agate.Table(rows, self.columns)
 
-        with self.assertRaises(agate.NullCalculationError):
+        warnings.simplefilter('error')
+
+        with self.assertRaises(agate.NullCalculationWarning):
             table.pearson_correlation('one', 'two')
+
+        warnings.simplefilter('ignore')
+
+        self.assertEqual(table.pearson_correlation('one', 'two'), 0)
 
     def test_pearson_correlation_zero(self):
         rows = (

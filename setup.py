@@ -3,7 +3,7 @@
 from setuptools import setup
 
 install_requires = [
-    'agate>=0.11.0'
+    'agate>=1.0.0'
 ]
 
 setup(
@@ -12,7 +12,7 @@ setup(
     description='agate-stats adds additional statistical methods to agate.',
     long_description=open('README').read(),
     author='Christopher Groskopf',
-    author_email='staringmonkey@gmail.com',
+    author_email='chrisgroskopf@gmail.com',
     url='http://agate-stats.readthedocs.org/',
     license='MIT',
     classifiers=[

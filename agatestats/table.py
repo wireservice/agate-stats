@@ -89,22 +89,35 @@ class TableStats(object):
         :param column_two: The name of a column.
         :returns: :class:`decimal.Decimal`.
         """
-        x = self.columns[column_one]
-        y = self.columns[column_two]
+        x_column = self.columns[column_one]
+        y_column = self.columns[column_two]
 
-        if x.aggregate(agate.HasNulls()) or y.aggregate(agate.HasNulls()):
-            raise agate.NullCalculationError
+        if x_column.aggregate(agate.HasNulls()):
+            agate.warn_null_calculation(self, x_column)
 
-        n = len(x)
+        if y_column.aggregate(agate.HasNulls()):
+            agate.warn_null_calculation(self, y_column)
 
-        sum_x = x.aggregate(agate.Sum())
-        sum_y = y.aggregate(agate.Sum())
+        x_data = []
+        y_data = []
 
-        square = lambda x: pow(x,2)
-        sum_x_sq = sum(map(square, x))
-        sum_y_sq = sum(map(square, y))
+        for x_val, y_val in zip(x_column, y_column):
+            if x_val is None or y_val is None:
+                continue
 
-        product_sum = sum((x_val * y_val for x_val, y_val in zip(x, y)))
+            x_data.append(x_val)
+            y_data.append(y_val)
+
+        n = len(x_data)
+
+        sum_x = x_column.aggregate(agate.Sum())
+        sum_y = y_column.aggregate(agate.Sum())
+
+        square = lambda v: pow(v, 2)
+        sum_x_sq = sum(map(square, x_data))
+        sum_y_sq = sum(map(square, y_data))
+
+        product_sum = sum((x_val * y_val for x_val, y_val in zip(x_data, y_data)))
 
         pearson_numerator = product_sum - (sum_x * sum_y / n)
         pearson_denominator = ((sum_x_sq - pow(sum_x, 2) / n) * (sum_y_sq - pow(sum_y, 2) / n)).sqrt()
