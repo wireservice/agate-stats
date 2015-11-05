@@ -50,6 +50,9 @@ class TestTable(unittest.TestCase):
         with self.assertRaises(agate.NullCalculationWarning):
             table.aggregate(PearsonCorrelation('one', 'two'))
 
+        with self.assertRaises(agate.NullCalculationWarning):
+            table.aggregate(PearsonCorrelation('two', 'one'))
+
         warnings.simplefilter('ignore')
 
         self.assertEqual(table.aggregate(PearsonCorrelation('one', 'two')), 0)
