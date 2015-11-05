@@ -21,8 +21,8 @@ class ZScores(agate.Computation):
         if not isinstance(column.data_type, agate.Number):
             raise agate.DataTypeError('ZScores column must contain Number data.')
 
-        self._mean = column.aggregate(agate.Mean())
-        self._sd = column.aggregate(agate.StDev())
+        self._mean = table.aggregate(agate.Mean(self._column_name))
+        self._sd = table.aggregate(agate.StDev(self._column_name))
 
     def run(self, row):
         return (row[self._column_name] - self._mean) / self._sd

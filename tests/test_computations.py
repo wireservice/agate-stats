@@ -23,18 +23,14 @@ class TestTableComputation(unittest.TestCase):
         self.number_type = agate.Number()
         self.text_type = agate.Text()
 
-        self.columns = (
-            ('one', self.text_type),
-            ('two', self.number_type),
-            ('three', self.number_type),
-            ('four', self.number_type)
-        )
+        self.column_names = ['one', 'two', 'three', 'four']
+        self.column_types = [agate.Text(), agate.Number(), agate.Number(), agate.Number()]
 
-        self.table = agate.Table(self.rows, self.columns)
+        self.table = agate.Table(self.rows, self.column_names, self.column_types)
 
     def test_z_scores(self):
         new_table = self.table.compute([
-            (ZScores('two'), 'z-scores')
+            ('z-scores', ZScores('two'))
         ])
 
         self.assertEqual(len(new_table.rows), 4)
@@ -48,5 +44,5 @@ class TestTableComputation(unittest.TestCase):
     def test_zscores_invalid_column(self):
         with self.assertRaises(agate.DataTypeError):
             new_table = self.table.compute([
-                (ZScores('one'), 'test')
+                ('test', ZScores('one'))
             ])

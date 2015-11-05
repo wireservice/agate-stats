@@ -22,14 +22,8 @@ class TestTable(unittest.TestCase):
             (None, 2, u'👍')
         )
 
-        self.number_type = agate.Number()
-        self.text_type = agate.Text()
-
-        self.columns = (
-            ('one', self.number_type),
-            ('two', self.number_type),
-            ('three', self.text_type)
-        )
+        self.column_names = ['one', 'two', 'three']
+        self.column_types = [agate.Number(), agate.Number(), agate.Text()]
 
     def test_stdev_outliers(self):
         rows = [
@@ -38,7 +32,7 @@ class TestTable(unittest.TestCase):
 
         rows.append((200, 1, 'b'))
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         new_table = table.stdev_outliers('one')
 
@@ -52,7 +46,7 @@ class TestTable(unittest.TestCase):
 
         rows.append((200, 1, 'b'))
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         new_table = table.stdev_outliers('one', reject=True)
 
@@ -66,7 +60,7 @@ class TestTable(unittest.TestCase):
 
         rows.append((200, 1, 'b'))
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         new_table = table.mad_outliers('one')
 
@@ -80,7 +74,7 @@ class TestTable(unittest.TestCase):
 
         rows.append((200, 1, 'b'))
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         new_table = table.mad_outliers('one', reject=True)
 
@@ -94,7 +88,7 @@ class TestTable(unittest.TestCase):
             (1, 3, 'c')
         )
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         self.assertEqual(table.pearson_correlation('one', 'one'), Decimal('1'))
         self.assertAlmostEqual(table.pearson_correlation('one', 'two'), Decimal('3').sqrt() * Decimal('0.5'))
@@ -106,7 +100,7 @@ class TestTable(unittest.TestCase):
             (1, None, 'c')
         )
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         warnings.simplefilter('error')
 
@@ -124,6 +118,6 @@ class TestTable(unittest.TestCase):
             (1, 3, 'c')
         )
 
-        table = agate.Table(rows, self.columns)
+        table = agate.Table(rows, self.column_names, self.column_types)
 
         self.assertEqual(table.pearson_correlation('one', 'two'), Decimal('0'))

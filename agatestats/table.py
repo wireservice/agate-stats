@@ -25,8 +25,8 @@ class TableStats(object):
             the outliers.
         :returns: A new :class:`Table <agate.table.Table>`.
         """
-        mean = self.columns[column_name].aggregate(agate.Mean())
-        sd = self.columns[column_name].aggregate(agate.StDev())
+        mean = self.aggregate(agate.Mean(column_name))
+        sd = self.aggregate(agate.StDev(column_name))
 
         lower_bound = mean - (sd * deviations)
         upper_bound = mean + (sd * deviations)
@@ -57,8 +57,8 @@ class TableStats(object):
             the outliers.
         :returns: A new :class:`Table <agate.table.Table>`.
         """
-        median = self.columns[column_name].aggregate(agate.Median())
-        mad = self.columns[column_name].aggregate(agate.MAD())
+        median = self.aggregate(agate.Median(column_name))
+        mad = self.aggregate(agate.MAD(column_name))
 
         lower_bound = median - (mad * deviations)
         upper_bound = median + (mad * deviations)
@@ -71,7 +71,7 @@ class TableStats(object):
         return self.where(f)
 
     @agate.allow_tableset_proxy
-    def pearson_correlation(self, column_one, column_two):
+    def pearson_correlation(self, x_column_name, y_column_name):
         """
         Calculates the `Pearson correlation coefficient <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
         for :code:`column_one` and :code:`column_two`.
@@ -85,17 +85,20 @@ class TableStats(object):
         `latimes-calculate <https://github.com/datadesk/latimes-calculate/blob/master/calculate/pearson.py>`_.
         Thanks, LAT!
 
-        :param column_one: The name of a column.
-        :param column_two: The name of a column.
-        :returns: :class:`decimal.Decimal`.
+        :param x_column_name:
+            The name of a column.
+        :param y_column_name:
+            The name of a column.
+        :returns:
+            :class:`decimal.Decimal`.
         """
-        x_column = self.columns[column_one]
-        y_column = self.columns[column_two]
+        x_column = self.columns[x_column_name]
+        y_column = self.columns[y_column_name]
 
-        if x_column.aggregate(agate.HasNulls()):
+        if self.aggregate(agate.HasNulls(x_column_name)):
             agate.warn_null_calculation(self, x_column)
 
-        if y_column.aggregate(agate.HasNulls()):
+        if self.aggregate(agate.HasNulls(y_column_name)):
             agate.warn_null_calculation(self, y_column)
 
         x_data = []
@@ -110,8 +113,8 @@ class TableStats(object):
 
         n = len(x_data)
 
-        sum_x = x_column.aggregate(agate.Sum())
-        sum_y = y_column.aggregate(agate.Sum())
+        sum_x = self.aggregate(agate.Sum(x_column_name))
+        sum_y = self.aggregate(agate.Sum(y_column_name))
 
         square = lambda v: pow(v, 2)
         sum_x_sq = sum(map(square, x_data))
