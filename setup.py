@@ -9,7 +9,7 @@ install_requires = [
 
 setup(
     name='agate-stats',
-    version='0.3.1',
+    version='0.4.0',
     description='agate-stats adds additional statistical methods to agate.',
     long_description=open('README.rst').read(),
     author='Christopher Groskopf',
