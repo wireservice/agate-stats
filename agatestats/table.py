@@ -17,13 +17,16 @@ class TableStats(object):
         fail to identify outliers. For a more robust measure see
         :meth:`.TableStats.mad_outliers`.
 
-        :param column_name: The name of the column to compute outliers on.
-        :param deviations: The number of deviations from the mean a data point
-            must be to qualify as an outlier.
-        :param reject: If :code:`True` then the new
-            :class:`Table <agate.table.Table>` will contain everything *except*
-            the outliers.
-        :returns: A new :class:`Table <agate.table.Table>`.
+        :param column_name:
+            The name of the column to compute outliers on.
+        :param deviations:
+            The number of deviations from the mean a data point must be to
+            qualify as an outlier.
+        :param reject:
+            If :code:`True` then the new :class:`Table <agate.table.Table>`
+            will contain everything *except* the outliers.
+        :returns:
+            A new :class:`Table <agate.table.Table>`.
         """
         mean = self.aggregate(agate.Mean(column_name))
         sd = self.aggregate(agate.StDev(column_name))
@@ -49,13 +52,16 @@ class TableStats(object):
         This method makes no attempt to validate that the distribution
         of your data is normal.
 
-        :param column_name: The name of the column to compute outliers on.
-        :param deviations: The number of deviations from the median a data point
-            must be to qualify as an outlier.
-        :param reject: If :code:`True` then the new
-            :class:`Table <agate.table.Table>` will contain everything *except*
-            the outliers.
-        :returns: A new :class:`Table <agate.table.Table>`.
+        :param column_name:
+            The name of the column to compute outliers on.
+        :param deviations:
+            The number of deviations from the median a data point must be to
+            qualify as an outlier.
+        :param reject:
+            If :code:`True` then the new :class:`Table <agate.table.Table>`
+            will contain everything *except* the outliers.
+        :returns:
+            A new :class:`Table <agate.table.Table>`.
         """
         median = self.aggregate(agate.Median(column_name))
         mad = self.aggregate(agate.MAD(column_name))
