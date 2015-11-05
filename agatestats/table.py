@@ -10,11 +10,11 @@ class TableStats(object):
         filters the dataset to rows where the value of the column are more than
         some number of standard deviations from the mean.
 
-        This method makes no attempt to validate that the distribution
-        of your data is normal.
+        This method makes no attempt to validate that the distribution of your
+        data is normal.
 
-        There are well-known cases in which this algorithm will
-        fail to identify outliers. For a more robust measure see
+        There are well-known cases in which this algorithm will fail to
+        identify outliers. For a more robust measure see
         :meth:`.TableStats.mad_outliers`.
 
         :param column_name:
@@ -49,8 +49,8 @@ class TableStats(object):
         some number of `median absolute deviations <http://en.wikipedia.org/wiki/Median_absolute_deviation>`_
         from the median.
 
-        This method makes no attempt to validate that the distribution
-        of your data is normal.
+        This method makes no attempt to validate that the distribution of your
+        data is normal.
 
         :param column_name:
             The name of the column to compute outliers on.
@@ -80,7 +80,7 @@ class TableStats(object):
     def pearson_correlation(self, x_column_name, y_column_name):
         """
         Calculates the `Pearson correlation coefficient <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
-        for :code:`column_one` and :code:`column_two`.
+        for ``x_column_name`` and ``y_column_name``.
 
         Returns a number between -1 and 1 with 0 implying no correlation. A
         correlation close to 1 implies a high positive correlation i.e. as x
