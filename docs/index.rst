@@ -33,7 +33,7 @@ Calling :func:`.patch` attaches all the methods of :class:`.TableStats` to :clas
 
     outliers = table.stdev_outliers('price')
 
-See the API section of the docs for a complete list of added methods.
+In addition to Table methods agatestats also includes a variety of additional aggregations and computations. See the API section of the docs for a complete list of all the added features.
 
 ===
 API
@@ -42,6 +42,9 @@ API
 .. autofunction:: agatestats.patch
 
 .. autoclass:: agatestats.table.TableStats
+    :members:
+
+.. autoclass:: agatestats.aggregations.PearsonCorrelation
     :members:
 
 .. autoclass:: agatestats.computations.ZScores

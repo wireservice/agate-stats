@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from agatestats.aggregations import PearsonCorrelation
 from agatestats.computations import ZScores
 
 def patch():
