@@ -3,14 +3,14 @@
 from setuptools import setup
 
 install_requires = [
-    'agate>=1.0.0'
+    'agate>=1.1.0'
 ]
 
 setup(
     name='agate-stats',
     version='0.3.0',
     description='agate-stats adds additional statistical methods to agate.',
-    long_description=open('README').read(),
+    long_description=open('README.rst').read(),
     author='Christopher Groskopf',
     author_email='chrisgroskopf@gmail.com',
     url='http://agate-stats.readthedocs.org/',

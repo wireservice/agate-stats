@@ -2,10 +2,7 @@
 agate-stats |release|
 =====================
 
-About
-=====
-
-.. include:: ../README
+.. include:: ../README.rst
 
 Install
 =======
@@ -33,17 +30,17 @@ API
 Authors
 =======
 
-.. include:: ../AUTHORS
+.. include:: ../AUTHORS.rst
+
+Changelog
+=========
+
+.. include:: ../CHANGELOG.rst
 
 License
 =======
 
 .. include:: ../COPYING
-
-Changelog
-=========
-
-.. include:: ../CHANGELOG
 
 Indices and tables
 ==================
