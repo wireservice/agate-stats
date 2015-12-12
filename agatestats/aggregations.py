@@ -72,3 +72,45 @@ class PearsonCorrelation(agate.Aggregation):
             return 0
 
         return pearson_numerator / pearson_denominator
+
+class BenfordsLaw(agate.Aggregation):
+    """
+    Calculates how well the given column conforms to `Benford's Law 
+    <http://en.wikipedia.org/wiki/Benford's_law>`_.
+    
+    Compares the distribution of first digits in the given column to the 
+    expected distribution from Benford's Law.
+    
+    Returns the Pearson correlation coefficient between the two distributions 
+    using :class:`.PearsonCorrelation`. 
+
+    :param column_name:
+        The name of a column.
+    """
+    def __init__(self, column_name):
+        self._column_name = column_name
+
+    def get_aggregate_data_type(self, table):
+        return agate.Number()
+
+    def run(self, table):
+        """
+        :returns:
+            :class:`decimal.Decimal`.
+        """
+        column = table.columns[self._column_name]
+
+        if table.aggregate(agate.HasNulls(self._column_name)):
+            agate.warn_null_calculation(self, column)
+        
+        digits = [int(str(abs(val))[0]) for val in column]    
+        percents = [float(digits.count(n))/len(digits) for n in range(1,10)]
+        benfords = [.301, .176, .125, .097, .079, .067, .058, .051, .046]
+
+        rows = zip(percents, benfords)
+        self.column_names = ['self', 'benford']
+        self.column_types = [agate.Number(), agate.Number()]
+        
+        table = agate.Table(rows, self.column_names, self.column_types)
+
+        return table.aggregate(PearsonCorrelation('self', 'benford'))

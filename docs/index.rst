@@ -46,6 +46,9 @@ API
 
 .. autoclass:: agatestats.aggregations.PearsonCorrelation
     :members:
+    
+.. autoclass:: agatestats.aggregations.BenfordsLaw
+    :members:
 
 .. autoclass:: agatestats.computations.ZScores
     :members:

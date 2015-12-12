@@ -12,6 +12,7 @@ except ImportError:
 import agate
 
 from agatestats.aggregations import PearsonCorrelation
+from agatestats.aggregations import BenfordsLaw
 
 class TestTable(unittest.TestCase):
     def setUp(self):
@@ -67,3 +68,17 @@ class TestTable(unittest.TestCase):
         table = agate.Table(rows, self.column_names, self.column_types)
 
         self.assertEqual(table.aggregate(PearsonCorrelation('one', 'two')), Decimal('0'))
+        
+    def test_benfords_law(self):
+        rows = (
+            (1, 2, 'a'),
+            (2, 3, 'b'),
+            (2, 4, 'c'),
+            (2, 3, 'd'),
+            (1, -2, 'e')
+        )
+        
+        table = agate.Table(rows, self.column_names, self.column_types)
+        
+        self.assertAlmostEqual(table.aggregate(BenfordsLaw('one')).quantize(Decimal('0.001')), Decimal('0.771'))
+        self.assertAlmostEqual(table.aggregate(BenfordsLaw('two')).quantize(Decimal('0.001')), Decimal('0.247'))
