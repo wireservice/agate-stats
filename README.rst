@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/onyxfish/agate-stats.png
-    :target: https://travis-ci.org/onyxfish/agate-stats
+.. image:: https://travis-ci.org/wireservice/agate-stats.png
+    :target: https://travis-ci.org/wireservice/agate-stats
     :alt: Build status
 
 .. image:: https://img.shields.io/pypi/dw/agate-stats.svg
@@ -18,11 +18,11 @@
     :target: https://pypi.python.org/pypi/agate-stats
     :alt: Support Python versions
 
-agate-stats adds statistical methods to `agate <https://github.com/onyxfish/agate>`_.
+agate-stats adds statistical methods to `agate <https://github.com/wireservice/agate>`_.
 
 Important links:
 
 * agate             http://agate.rtfd.org
 * Documentation:    http://agate-stats.rtfd.org
-* Repository:       https://github.com/onyxfish/agate-stats
-* Issues:           https://github.com/onyxfish/agate-stats/issues
+* Repository:       https://github.com/wireservice/agate-stats
+* Issues:           https://github.com/wireservice/agate-stats/issues
