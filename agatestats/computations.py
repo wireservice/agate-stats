@@ -15,14 +15,16 @@ class ZScores(agate.Computation):
     def get_computed_data_type(self, table):
         return agate.Number()
 
-    def prepare(self, table):
+    def validate(self, table):
         column = table.columns[self._column_name]
 
         if not isinstance(column.data_type, agate.Number):
             raise agate.DataTypeError('ZScores column must contain Number data.')
 
+    def run(self, table):
         self._mean = table.aggregate(agate.Mean(self._column_name))
         self._sd = table.aggregate(agate.StDev(self._column_name))
 
-    def run(self, row):
-        return (row[self._column_name] - self._mean) / self._sd
+        new_column = [(row[self._column_name] - self._mean) / self._sd for row in table.rows]
+        
+        return new_column
