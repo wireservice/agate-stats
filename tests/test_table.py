@@ -9,8 +9,6 @@ except ImportError:
 import agate
 import agatestats
 
-agatestats.patch()
-
 class TestTable(unittest.TestCase):
     def setUp(self):
         self.rows = (

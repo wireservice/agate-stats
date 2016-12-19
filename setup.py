@@ -4,7 +4,7 @@ from setuptools import setup
 
 install_requires = [
     'six>=1.6.1',
-    'agate>=1.1.0'
+    'agate>=1.5.0'
 ]
 
 setup(

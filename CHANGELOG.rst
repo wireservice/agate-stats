@@ -1,7 +1,9 @@
 0.4.0
 -----
 
-
+* Update :class:`.ZScores` to use new :class:`.Computation` interface.
+* Remove monkey patching.
+* Upgrade agate dependency to ``1.5.0``.
 
 0.3.1 - November 5, 2015
 ------------------------
