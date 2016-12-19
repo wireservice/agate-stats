@@ -1,5 +1,10 @@
-0.4.0
+0.4.1
 -----
+
+
+
+0.4.0 - December 19, 2016
+-------------------------
 
 * Update :class:`.ZScores` to use new :class:`.Computation` interface.
 * Remove monkey patching.
