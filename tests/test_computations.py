@@ -11,6 +11,7 @@ import agate
 
 from agatestats.computations import ZScores
 
+
 class TestTableComputation(unittest.TestCase):
     def setUp(self):
         self.rows = (
@@ -43,6 +44,6 @@ class TestTableComputation(unittest.TestCase):
 
     def test_zscores_invalid_column(self):
         with self.assertRaises(agate.DataTypeError):
-            new_table = self.table.compute([
+            self.table.compute([
                 ('test', ZScores('one'))
             ])

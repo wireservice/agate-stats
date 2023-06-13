@@ -2,10 +2,12 @@
 
 import agate
 
+
 class ZScores(agate.Computation):
     """
     Computes the z-scores (standard scores) of a given column.
     """
+
     def __init__(self, column_name):
         self._column_name = column_name
 

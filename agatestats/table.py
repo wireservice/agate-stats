@@ -2,6 +2,7 @@
 
 import agate
 
+
 def stdev_outliers(self, column_name, deviations=3, reject=False):
     """
     A wrapper around :meth:`Table.where <agate.table.Table.where>` that
@@ -33,11 +34,12 @@ def stdev_outliers(self, column_name, deviations=3, reject=False):
     upper_bound = mean + (sd * deviations)
 
     if reject:
-        f = lambda row: row[column_name] < lower_bound or row[column_name] > upper_bound
+        def f(row): return row[column_name] < lower_bound or row[column_name] > upper_bound
     else:
-        f = lambda row: lower_bound <= row[column_name] <= upper_bound
+        def f(row): return lower_bound <= row[column_name] <= upper_bound
 
     return self.where(f)
+
 
 def mad_outliers(self, column_name, deviations=3, reject=False):
     """
@@ -67,11 +69,12 @@ def mad_outliers(self, column_name, deviations=3, reject=False):
     upper_bound = median + (mad * deviations)
 
     if reject:
-        f = lambda row: row[column_name] < lower_bound or row[column_name] > upper_bound
+        def f(row): return row[column_name] < lower_bound or row[column_name] > upper_bound
     else:
-        f = lambda row: lower_bound <= row[column_name] <= upper_bound
+        def f(row): return lower_bound <= row[column_name] <= upper_bound
 
     return self.where(f)
+
 
 agate.Table.stdev_outliers = stdev_outliers
 agate.Table.mad_outliers = mad_outliers

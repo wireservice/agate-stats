@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-from decimal import Decimal
 import warnings
+from decimal import Decimal
 
 try:
     import unittest2 as unittest
@@ -12,6 +12,7 @@ except ImportError:
 import agate
 
 from agatestats.aggregations import PearsonCorrelation
+
 
 class TestTable(unittest.TestCase):
     def setUp(self):

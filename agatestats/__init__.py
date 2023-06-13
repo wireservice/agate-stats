@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from agatestats.aggregations import *
-from agatestats.computations import *
 import agatestats.table
 import agatestats.tableset
+from agatestats.aggregations import PearsonCorrelation
+from agatestats.computations import ZScores

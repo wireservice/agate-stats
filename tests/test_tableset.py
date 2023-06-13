@@ -7,7 +7,9 @@ except ImportError:
     import unittest
 
 import agate
-import agatestats
+
+import agatestats  # noqa: F401
+
 
 class TestTableSet(unittest.TestCase):
     def setUp(self):

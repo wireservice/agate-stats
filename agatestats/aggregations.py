@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
+import agate
 from six.moves import map
 
-import agate
 
 class PearsonCorrelation(agate.Aggregation):
     """
-    Calculates the `Pearson correlation coefficient <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
+    Calculates the `Pearson correlation coefficient
+    <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
     for ``x_column_name`` and ``y_column_name``.
 
     Returns a number between -1 and 1 with 0 implying no correlation. A
@@ -23,6 +24,7 @@ class PearsonCorrelation(agate.Aggregation):
     :param y_column_name:
         The name of a column.
     """
+
     def __init__(self, x_column_name, y_column_name):
         self._x_column_name = x_column_name
         self._y_column_name = y_column_name
@@ -59,7 +61,7 @@ class PearsonCorrelation(agate.Aggregation):
         sum_x = table.aggregate(agate.Sum(self._x_column_name))
         sum_y = table.aggregate(agate.Sum(self._y_column_name))
 
-        square = lambda v: pow(v, 2)
+        def square(v): return pow(v, 2)
         sum_x_sq = sum(map(square, x_data))
         sum_y_sq = sum(map(square, y_data))
 
