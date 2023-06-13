@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import agate
-from six.moves import map
 
 
 class PearsonCorrelation(agate.Aggregation):

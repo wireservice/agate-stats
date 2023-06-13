@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf8 -*-
 
 import warnings
 from decimal import Decimal
@@ -19,7 +18,7 @@ class TestTable(unittest.TestCase):
         self.rows = (
             (1, 4, 'a'),
             (2, 3, 'b'),
-            (None, 2, u'👍')
+            (None, 2, '👍')
         )
 
         self.column_names = ['one', 'two', 'three']
