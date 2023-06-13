@@ -45,7 +45,7 @@ def mad_outliers(self, column_name, deviations=3, reject=False):
     """
     A wrapper around :meth:`Table.where <agate.table.Table.where>` that
     filters the dataset to rows where the value of the column are more than
-    some number of `median absolute deviations <http://en.wikipedia.org/wiki/Median_absolute_deviation>`_
+    some number of `median absolute deviations <https://en.wikipedia.org/wiki/Median_absolute_deviation>`_
     from the median.
 
     This method makes no attempt to validate that the distribution of your

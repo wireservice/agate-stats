@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/wireservice/agate-stats.png
-    :target: https://travis-ci.org/wireservice/agate-stats
+.. image:: https://github.com/wireservice/agate-stats/workflows/CI/badge.svg
+    :target: https://github.com/wireservice/agate-stats/actions
     :alt: Build status
 
 .. image:: https://img.shields.io/pypi/dw/agate-stats.svg
@@ -22,7 +22,7 @@ agate-stats adds statistical methods to `agate <https://github.com/wireservice/a
 
 Important links:
 
-* agate             http://agate.rtfd.org
-* Documentation:    http://agate-stats.rtfd.org
+* agate             https://agate.rtfd.org
+* Documentation:    https://agate-stats.rtfd.org
 * Repository:       https://github.com/wireservice/agate-stats
 * Issues:           https://github.com/wireservice/agate-stats/issues

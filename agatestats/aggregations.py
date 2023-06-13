@@ -7,7 +7,7 @@ from six.moves import map
 class PearsonCorrelation(agate.Aggregation):
     """
     Calculates the `Pearson correlation coefficient
-    <http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
+    <https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient>`_
     for ``x_column_name`` and ``y_column_name``.
 
     Returns a number between -1 and 1 with 0 implying no correlation. A
