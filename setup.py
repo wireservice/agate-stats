@@ -36,5 +36,15 @@ setup(
     install_requires=[
         'six>=1.6.1',
         'agate>=1.5.0'
-    ]
+    ],
+    extras_require={
+        'test': [
+            'pytest',
+            'pytest-cov',
+        ],
+        'docs': [
+            'Sphinx>=1.2.2',
+            'sphinx_rtd_theme>=0.1.6',
+        ],
+    }
 )
