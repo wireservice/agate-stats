@@ -1,4 +1,5 @@
 import unittest
+
 import agate
 
 import agatestats  # noqa: F401

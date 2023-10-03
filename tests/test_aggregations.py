@@ -1,6 +1,7 @@
+import unittest
 import warnings
 from decimal import Decimal
-import unittest
+
 import agate
 
 from agatestats.aggregations import PearsonCorrelation
