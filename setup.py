@@ -34,7 +34,6 @@ setup(
     ],
     packages=find_packages(exclude=['tests', 'tests.*']),
     install_requires=[
-        'six>=1.6.1',
         'agate>=1.5.0'
     ],
     extras_require={
