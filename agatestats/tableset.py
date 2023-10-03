@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import agate
 
 from agatestats.table import mad_outliers, stdev_outliers  # noqa: F401

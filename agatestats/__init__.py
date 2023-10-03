@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import agatestats.table
 import agatestats.tableset
 from agatestats.aggregations import PearsonCorrelation
