@@ -1,5 +1,3 @@
-#!/usr/bin/env Python
-
 from decimal import Decimal
 
 try:
