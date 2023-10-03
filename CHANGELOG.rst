@@ -2,6 +2,7 @@
 -----------------------
 
 * Remove six dependency.
+* Fix :meth:`.ZScores.run` method.
 
 0.4.0 - December 19, 2016
 -------------------------
