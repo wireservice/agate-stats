@@ -1,10 +1,5 @@
 from decimal import Decimal
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-
+import unittest
 import agate
 
 from agatestats.computations import ZScores
