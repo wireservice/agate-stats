@@ -21,10 +21,10 @@ class ZScores(agate.Computation):
         if not isinstance(column.data_type, agate.Number):
             raise agate.DataTypeError('ZScores column must contain Number data.')
 
+    def run(self, table):
         self._mean = table.aggregate(agate.Mean(self._column_name))
         self._sd = table.aggregate(agate.StDev(self._column_name))
 
-    def run(self, table):
         new_column = []
 
         for row in table.rows:
