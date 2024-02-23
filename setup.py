@@ -5,7 +5,7 @@ with open('README.rst') as f:
 
 setup(
     name='agate-stats',
-    version='0.4.1',
+    version='0.4.2',
     description='agate-stats adds additional statistical methods to agate.',
     long_description=long_description,
     long_description_content_type='text/x-rst',
