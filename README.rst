@@ -2,8 +2,8 @@
     :target: https://github.com/wireservice/agate-stats/actions
     :alt: Build status
 
-.. image:: https://coveralls.io/repos/wireservice/agate-stats/badge.svg?branch=master
-    :target: https://coveralls.io/r/wireservice/agate-stats
+.. image:: https://codecov.io/github/wireservice/agate-stats/graph/badge.svg
+    :target: https://codecov.io/github/wireservice/agate-stats
     :alt: Coverage status
 
 .. image:: https://img.shields.io/pypi/dw/agate-stats.svg
